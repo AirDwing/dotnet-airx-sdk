@@ -21,7 +21,7 @@ dotnet add package AirXSDKBase
 ```c#
 using AirXSDKBase;
 
-var sdk = new BaseRequest(new SDKOption{
+var sdk = new BaseRequest(new SDKOption {
   SecretId = "SecretId", //appid
   SecretKey = "SecretKey", //appkey
   Domain = "staging.airdwing.com", // 请求的url，
@@ -29,9 +29,9 @@ var sdk = new BaseRequest(new SDKOption{
 });
 
 // Get:
-var result = await sdk.GET("/user/check", new{ username = "18888888888" });
+var result = await sdk.GET("/user/check", new { username = "18888888888" });
 
 //POST:
-var result = await sdk.POST("/org/users", new{ auth = "auth*********", oid = "5555" });
+var result = await sdk.POST("/org/users", new { auth = "auth*********", oid = "5555" });
 ```
 
