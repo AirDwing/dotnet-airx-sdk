@@ -6,6 +6,9 @@
     <Company>南京大翼航空科技有限公司</Company>
     <Product>AirX</Product>
     <Authors>AirDwing</Authors>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
   </PropertyGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <Reference Include="System" />
