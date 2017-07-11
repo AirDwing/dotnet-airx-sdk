@@ -15,14 +15,21 @@ namespace AirXSDKBase.Common
         /// <returns>随机字符串</returns>
         public static string Nonce(int length)
         {
-            char[] c = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' };
             Random r = new Random();
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < length; i++)
-            {
-                sb.Append(c[r.Next(0, 9)]);
-            }
-            return sb.ToString();
+            var min=Math.Pow(10,(length-1));
+            var max=Math.Pow(10,(double)(length)+1);
+            return r.Next((int)min,(int)max).ToString();
+        }
+
+        /// <summary>
+        /// 随机字符串
+        /// </summary>
+        /// <param name="length">字符串长度</param>
+        /// <returns>随机字符串</returns>
+        public static string Nonce()
+        {
+            Random r = new Random();
+            return r.Next(1000,99999).ToString();
         }
 
         public static string ModelToQueryString<T>(T obj)
@@ -34,14 +41,30 @@ namespace AirXSDKBase.Common
             }
             return string.Join("&", result);
         }
-        public static string ModelToQueryString(Object obj)
+        /// <summary>
+        /// 排序版
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static string ModelToQueryStringSort(object obj)
         {
             var result = new List<string>();
-            foreach (var property in typeof(Object).GetProperties())
+            foreach (var property in obj.GetType().GetProperties())
             {
                 result.Add(property.Name + "=" + property.GetValue(obj));
             }
+            result.Sort();
             return string.Join("&", result);
+        }
+
+        public static IEnumerable<KeyValuePair<string,string>> ModelToKeyValueSort(object obj)
+        {
+            var result = new SortedDictionary<string,string>();
+            foreach (var property in obj.GetType().GetProperties())
+            {
+                result.Add(property.Name,property.GetValue(obj).ToString());
+            }
+            return result;
         }
     }
 }
