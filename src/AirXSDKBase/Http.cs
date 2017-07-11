@@ -24,7 +24,7 @@ namespace AirXSDKBase
         /// </summary>
         /// <returns></returns>
         public bool Secure { get; set; }
-        public int Port { get; set; }=-1;
+        public int Port { get; set; } = -1;
     }
     public class BaseRequest
     {
@@ -72,7 +72,6 @@ namespace AirXSDKBase
             var query = HttpUtility.ParseQueryString(querystring);
             query["Signature"] = _signature.Compute(sb.ToString());
             _uri.Query = query.ToString();
-            Console.WriteLine(_uri.Uri.ToString());
             var result = await _httpclient.GetAsync(_uri.Uri);
             return await result.Content.ReadAsStringAsync();
         }
@@ -84,7 +83,6 @@ namespace AirXSDKBase
             sb.Append(_uri.Host);
             sb.Append(_uri.Path);
             sb.Append("?");
-            Console.WriteLine(_uri.Uri.ToString());
             var smodel = new CommonParameterModel
             {
                 Nonce = CommonTools.Nonce(),
@@ -104,7 +102,6 @@ namespace AirXSDKBase
                 new KeyValuePair<string, string>("Signature",Signature)
             };
             bodylist.AddRange(CommonTools.ModelToKeyValueSort(obj));
-            Console.WriteLine(new FormUrlEncodedContent(bodylist));
             var result = await _httpclient.PostAsync(_uri.Uri, new FormUrlEncodedContent(bodylist));
             return await result.Content.ReadAsStringAsync();
         }

@@ -32,8 +32,9 @@ namespace AirXSDKBase
         public string Compute(string str)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(str);
-            
-            switch(this.SignatureOption.SignatureMethod){
+
+            switch (this.SignatureOption.SignatureMethod)
+            {
                 case SignatureOption.SignatureType.HmacSHA1:
                     return Convert.ToBase64String(ComputeHMACSHA1(buffer));
                 case SignatureOption.SignatureType.HmacSHA256:

@@ -16,9 +16,9 @@ namespace AirXSDKBase.Common
         public static string Nonce(int length)
         {
             Random r = new Random();
-            var min=Math.Pow(10,(length-1));
-            var max=Math.Pow(10,(double)(length)+1);
-            return r.Next((int)min,(int)max).ToString();
+            var min = Math.Pow(10, (length - 1));
+            var max = Math.Pow(10, (double)(length) + 1);
+            return r.Next((int)min, (int)max).ToString();
         }
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace AirXSDKBase.Common
         public static string Nonce()
         {
             Random r = new Random();
-            return r.Next(1000,99999).ToString();
+            return r.Next(1000, 99999).ToString();
         }
 
         public static string ModelToQueryString<T>(T obj)
@@ -57,12 +57,12 @@ namespace AirXSDKBase.Common
             return string.Join("&", result);
         }
 
-        public static IEnumerable<KeyValuePair<string,string>> ModelToKeyValueSort(object obj)
+        public static IEnumerable<KeyValuePair<string, string>> ModelToKeyValueSort(object obj)
         {
-            var result = new SortedDictionary<string,string>();
+            var result = new SortedDictionary<string, string>();
             foreach (var property in obj.GetType().GetProperties())
             {
-                result.Add(property.Name,property.GetValue(obj).ToString());
+                result.Add(property.Name, property.GetValue(obj).ToString());
             }
             return result;
         }
