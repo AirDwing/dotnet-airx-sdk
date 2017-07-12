@@ -29,7 +29,7 @@ var sdk = new AirXBase(new AirXBaseOption
   Secure = true //是否使用ssl
 });
 
-// Get:
+// GET:
 var result = await sdk.GET("/user/check", new { username = "18888888888" });
 
 // POST:
