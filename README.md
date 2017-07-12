@@ -4,24 +4,25 @@
 
 ## Start
 
-Nuget Url- https://www.nuget.org/packages/AirXSDKBase
+Nuget Url- https://www.nuget.org/packages/Dwing.AirXSDKBase
 
 Nuget Console:
 
 ```
-Install-Package AirXSDKBase
+Install-Package Dwing.AirXSDKBase
 ```
 
 CoreCli:
 
 ```
-dotnet add package AirXSDKBase
+dotnet add package Dwing.AirXSDKBase
 ```
 
 ```c#
-using AirXSDKBase;
+using AirXBase;
 
-var sdk = new BaseRequest(new SDKOption {
+var sdk = new AirXBase(new AirXBaseOption 
+{
   SecretId = "SecretId", //appid
   SecretKey = "SecretKey", //appkey
   Domain = "staging.airdwing.com", // 请求的url，
@@ -31,7 +32,7 @@ var sdk = new BaseRequest(new SDKOption {
 // Get:
 var result = await sdk.GET("/user/check", new { username = "18888888888" });
 
-//POST:
+// POST:
 var result = await sdk.POST("/org/users", new { auth = "auth*********", oid = "5555" });
 ```
 
