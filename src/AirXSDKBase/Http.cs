@@ -1,44 +1,49 @@
+using Dwing.AirXSDKBase.Common;
+using Dwing.AirXSDKBase.Model;
 using System;
-using System.Net.Http;
-using System.Web;
-using System.Threading.Tasks;
-using AirXSDKBase.Common;
-using AirXSDKBase.Model;
-using System.Linq;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using System.Web;
 
-namespace AirXSDKBase
+namespace Dwing.AirXSDKBase
 {
-    public class SDKOption
+    public class AirXBaseOption
     {
         public string SecretId { get; set; }
         public string SecretKey { get; set; }
+
         /// <summary>
         /// 访问的域名
         /// </summary>
         /// <returns></returns>
         public string Domain { get; set; }
+
         /// <summary>
         /// 是否启用https
         /// </summary>
         /// <returns></returns>
         public bool Secure { get; set; }
+
         public int Port { get; set; } = -1;
     }
-    public class BaseRequest
+
+    public class AirXBase
     {
-        public SDKOption SDKOption { get; set; }
-        Signature _signature;
-        HttpClient _httpclient;
+        public AirXBaseOption SDKOption { get; set; }
+        private Signature _signature;
+        private HttpClient _httpclient;
         public SignatureOption SignatureOption { get; set; }
-        public BaseRequest(SDKOption SDKOption)
+
+        public AirXBase(AirXBaseOption SDKOption)
         {
             this.SignatureOption = new SignatureOption { SecretId = SDKOption.SecretId, SecretKey = SDKOption.SecretKey };
             _httpclient = new HttpClient();
             _signature = new Signature(SignatureOption);
             this.SDKOption = SDKOption;
         }
+
         private UriBuilder CreateUriBuilder(string path)
         {
             var result = new UriBuilder()
@@ -53,6 +58,7 @@ namespace AirXSDKBase
             }
             return result;
         }
+
         public async Task<string> GET(string path, object obj)
         {
             var _uri = CreateUriBuilder(path);
@@ -75,6 +81,7 @@ namespace AirXSDKBase
             var result = await _httpclient.GetAsync(_uri.Uri);
             return await result.Content.ReadAsStringAsync();
         }
+
         public async Task<string> POST(string path, object obj)
         {
             var _uri = CreateUriBuilder(path);

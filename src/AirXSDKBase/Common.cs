@@ -1,10 +1,7 @@
 using System;
-using System.Text;
-using System.ComponentModel;
-using AirXSDKBase.Model;
 using System.Collections.Generic;
 
-namespace AirXSDKBase.Common
+namespace Dwing.AirXSDKBase.Common
 {
     public static class CommonTools
     {
@@ -13,7 +10,7 @@ namespace AirXSDKBase.Common
         /// </summary>
         /// <param name="length">字符串长度</param>
         /// <returns>随机字符串</returns>
-        public static string Nonce(int length)
+        internal static string Nonce(int length)
         {
             Random r = new Random();
             var min = Math.Pow(10, (length - 1));
@@ -26,13 +23,13 @@ namespace AirXSDKBase.Common
         /// </summary>
         /// <param name="length">字符串长度</param>
         /// <returns>随机字符串</returns>
-        public static string Nonce()
+        internal static string Nonce()
         {
             Random r = new Random();
             return r.Next(1000, 99999).ToString();
         }
 
-        public static string ModelToQueryString<T>(T obj)
+        internal static string ModelToQueryString<T>(T obj)
         {
             var result = new List<string>();
             foreach (var property in typeof(T).GetProperties())
@@ -41,12 +38,13 @@ namespace AirXSDKBase.Common
             }
             return string.Join("&", result);
         }
+
         /// <summary>
         /// 排序版
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static string ModelToQueryStringSort(object obj)
+        internal static string ModelToQueryStringSort(object obj)
         {
             var result = new List<string>();
             foreach (var property in obj.GetType().GetProperties())
@@ -57,7 +55,7 @@ namespace AirXSDKBase.Common
             return string.Join("&", result);
         }
 
-        public static IEnumerable<KeyValuePair<string, string>> ModelToKeyValueSort(object obj)
+        internal static IEnumerable<KeyValuePair<string, string>> ModelToKeyValueSort(object obj)
         {
             var result = new SortedDictionary<string, string>();
             foreach (var property in obj.GetType().GetProperties())
@@ -67,4 +65,16 @@ namespace AirXSDKBase.Common
             return result;
         }
     }
+
+#if (NET45 || NET452)
+
+    public static class DateTimeOffSetEx
+    {
+        public static long ToUnixTimeSeconds(this DateTimeOffset date)
+        {
+            return ((date.ToUniversalTime().Ticks - 621355968000000000) / 10000000);
+        }
+    }
+
+#endif
 }

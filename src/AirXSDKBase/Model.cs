@@ -1,5 +1,4 @@
-
-namespace AirXSDKBase.Model
+namespace Dwing.AirXSDKBase.Model
 {
     public class CommonParameterModel
     {

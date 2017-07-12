@@ -6,7 +6,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E32DB0CE-023
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "test", "src\test\test.csproj", "{5FAD7D33-591C-4FC4-B0D5-B5E5F323B614}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirXSDKBase", "src\AirXSDKBase\AirXSDKBase.csproj", "{67158503-05ED-425A-8E1C-E1EF268A22AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AirXSDKBase", "src\AirXSDKBase\Dwing.AirXSDKBase.csproj", "{67158503-05ED-425A-8E1C-E1EF268A22AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
